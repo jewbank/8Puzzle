@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Board {
+public class Board implements Comparable<Board>{
 
     private Dimension size;
     public static final int UP = 0;
@@ -12,8 +12,8 @@ public class Board {
 
 
     private final int[][] position;
-    private Board previous;
-    private int numMoves;
+    public Board previous;
+    public int numMoves;
 
     private int row0;
     private int col0;
@@ -159,6 +159,11 @@ public class Board {
         return true;
     }
 
+    public boolean isSolved()
+    {
+        return this.hamming() == 0;
+    }
+
     /**
      *
      * @return an ArrayList of all neighboring board positions
@@ -170,7 +175,7 @@ public class Board {
             if(canMove(i))
             {
                 Board s = new Board(this,i);
-                if(!s.equals(previous))
+                if(previous == null || !s.equals(previous))
                     neighbors.add(s);
             }
         }
@@ -236,7 +241,7 @@ public class Board {
 
         public String toString()
         {
-            String output = "";
+            String output = "\n";
             for(int i = 0; i < position.length; i++){
                 for(int j = 0; j < position[i].length; j++)
                 {
@@ -247,4 +252,8 @@ public class Board {
             return output;
         }
 
+    @Override
+    public int compareTo(Board board) {
+        return (this.manhattan() + this.numMoves) - (board.manhattan() + board.numMoves) ;
+    }
 }
