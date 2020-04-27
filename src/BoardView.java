@@ -8,6 +8,7 @@ public class BoardView extends JDialog {
     private JButton buttonCancel;
     private JPanel viewPane;
     private JLabel hammingValue;
+    private JLabel manhattenValue;
 
     private Board model;
 
@@ -111,6 +112,7 @@ public class BoardView extends JDialog {
             }
         }
         hammingValue.setText(model.hamming() + " ");
+        manhattenValue.setText(model.manhattan() + " ");
 
 
     }

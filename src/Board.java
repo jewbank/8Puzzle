@@ -112,7 +112,31 @@ public class Board {
      */
     public int manhattan()
     {
-        return 0;
+        int totalOff = 0;
+        int properNumber = 1;
+
+        for(int i = 0; i < position.length; i++){
+            for(int j = 0; j < position[i].length; j++){
+                if(position[i][j] != 0){
+                    int currentValue = position[i][j];
+                    int currentLocation = properNumber;
+
+                    int goalR = (currentValue - 1) / position[i].length;
+                    int currentR = (currentLocation - 1) / position[i].length;
+
+                    int goalC = (currentValue - 1) % position.length;
+                    int currentC = (currentLocation - 1) % position.length;
+
+                    int rowDiff = (int)Math.abs(currentR - goalR);
+                    int colDiff = (int)Math.abs(currentC - goalC);
+
+                    totalOff += rowDiff + colDiff;
+                }
+                properNumber++;
+            }
+        }
+
+        return totalOff;
     }
 
     /**
