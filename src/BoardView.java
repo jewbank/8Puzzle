@@ -7,6 +7,7 @@ public class BoardView extends JDialog {
     private JButton buttonOK;
     private JButton buttonCancel;
     private JPanel viewPane;
+    private JLabel hammingValue;
 
     private Board model;
 
@@ -29,6 +30,8 @@ public class BoardView extends JDialog {
                 viewPane.add(b);
             }
         }
+        updateView();
+
 
         setContentPane(contentPane);
         setModal(true);
@@ -107,6 +110,8 @@ public class BoardView extends JDialog {
                 b.setLabel(model.get(i,j));
             }
         }
+        hammingValue.setText(model.hamming() + " ");
+
 
     }
 

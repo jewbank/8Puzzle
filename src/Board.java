@@ -92,7 +92,18 @@ public class Board {
      */
     public int hamming()
     {
-        return 0;
+        int numOff = 0;
+        int properNumber = 1;
+
+        for(int i = 0; i < position.length; i++){
+            for(int j = 0; j < position[i].length; j++){
+                if(position[i][j] != 0 && position[i][j] != properNumber)
+                    numOff++;
+                properNumber++;
+            }
+        }
+
+        return numOff;
     }
 
     /**
